@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  front-end:
+    build: front-end/
+    ports:
+      - 3000:3000
+    command: npm start
+  back-end:
+    build: back-end/
+    # volumes: # - D:\web\full-stack\chat-plombier\back-end:/app/back-end
+    ports:
+      - 3001:3001
+    command: node index.js
