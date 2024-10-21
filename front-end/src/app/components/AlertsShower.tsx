@@ -1,22 +1,29 @@
 import React from "react"
-import { IAlertType, IAlertTypeOptions, IAnyAlertList } from "../types/IAlert"
+import { IAlertType, IAlertTypeOptions, IAnyAlertList, IUrgentAlert } from "../types/IAlert"
 import { Socket } from "socket.io-client"
 
 interface IAlertsShowerProps {
    alerts: IAnyAlertList
-   setAlerts: React.Dispatch<React.SetStateAction<IAnyAlertList>>
    socket: Socket
 }
 
 
-const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, setAlerts }) => {
+const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, }) => {
 
+   const [uncheckedUrgentAlerts, setUncheckedUrgentAlerts] = React.useState<IUrgentAlert[]>([])
 
    React.useEffect(() => {
-      socket.on("removeAlertResponse", (msg) => {
-         setAlerts(msg)
+      let newUrgentArray: IUrgentAlert[] = []
+      alerts.forEach((alert) => {
+         if (
+            alert.type === IAlertTypeOptions.urgent &&
+            alert.shown === false
+         ) {
+            newUrgentArray.unshift(alert)
+         }
       })
-   }, [])
+      setUncheckedUrgentAlerts(newUrgentArray)
+   }, [alerts])
 
    const getStyleByType = (type: IAlertType): string => {
       switch (type) {
@@ -33,6 +40,30 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, setAlerts 
 
    return (
       <>
+         {
+            uncheckedUrgentAlerts.length > 0
+               ?
+               <div className="bg-red-600 left-0 top-0 absolute w-[100vw] h-[100vh] text-white text-7xl font-bold flex justify-center items-center">
+                  <div
+                     className="w-12 h-12 bg-white cursor-pointer mr-10"
+                     onClick={() => {
+                        const id = uncheckedUrgentAlerts[0].id
+                        const shownAlert = uncheckedUrgentAlerts[0]
+                        shownAlert.shown = true
+
+                        socket.emit("updateAlert", id, shownAlert)
+                     }}
+                  ></div>
+                  <span>
+                     {
+                        uncheckedUrgentAlerts[0].text
+                     }
+                  </span>
+               </div>
+               :
+               null
+         }
+
          <div className="">
             {
                alerts.map((alert, index) => {

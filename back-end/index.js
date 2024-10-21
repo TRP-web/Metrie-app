@@ -14,7 +14,7 @@ const tt = [{
    type: "urgent",
    date: new Date(),
    chacked: false,
-   showed: false
+   shown: false
 },
 {
    text: "test normal alert",
@@ -22,7 +22,7 @@ const tt = [{
    type: "normal",
    date: new Date(),
    chacked: false,
-   showed: false
+   shown: false
 },
 {
    text: "test keep-going alert",
@@ -30,7 +30,7 @@ const tt = [{
    type: "keep-going",
    date: new Date(),
    chacked: false,
-   showed: false
+   shown: false
 }
 
 ]
@@ -50,20 +50,33 @@ const getSocketsAmount = () => {
 //    socket.emit("new-allert-c")
 
 // }
+const alertResponse = (io, updatedAlertList) => {
+   io.emit("alertResponse", updatedAlertList)
+}
 prime.on('connection', (socket) => {
    prime.emit("status-change", getSocketsAmount())
    prime.emit("connected", primeAlertsList)
 
    socket.on("alert", (msg) => {
       primeAlertsList.unshift(msg)
-      prime.emit("alertResponse", primeAlertsList)
+      alertResponse(prime, primeAlertsList)
    })
 
    socket.on("removeAlert", (msg) => {
       const id = msg.id
       const newAlertsList = primeAlertsList.filter((alert) => alert.id !== id)
       primeAlertsList = newAlertsList
-      prime.emit("removeAlertResponse", primeAlertsList)
+      alertResponse(prime, primeAlertsList)
+   })
+
+   socket.on('updateAlert', (updatedAlertId, updatedAlert) => {
+      const newPrimeAlertsList = primeAlertsList.map((alert) => {
+         if (updatedAlertId === alert.id) {
+            return updatedAlert
+         } else return alert
+      })
+      primeAlertsList = newPrimeAlertsList
+      alertResponse(prime, primeAlertsList)
    })
 
    socket.on('disconnect', () => {
@@ -81,14 +94,25 @@ outfeed.on("connection", (socket) => {
 
    socket.on("alert", (msg) => {
       outfeedAlertsList.unshift(msg)
-      outfeed.emit("alertResponse", outfeedAlertsList)
+      alertResponse(outfeed, outfeedAlertsList)
    })
 
    socket.on("removeAlert", (msg) => {
       const id = msg.id
       const newAlertsList = outfeedAlertsList.filter((alert) => alert.id !== id)
       outfeedAlertsList = newAlertsList
-      outfeed.emit("removeAlertResponse", outfeedAlertsList)
+      alertResponse(outfeed, outfeedAlertsList)
+   })
+
+   socket.on('updateAlert', (updatedAlertId, updatedAlert) => {
+      const newOutfeedAlertsList = outfeedAlertsList.map((alert) => {
+         if (updatedAlertId === alert.id) {
+            return updatedAlert
+         } else return alert
+      })
+      console.log(newOutfeedAlertsList)
+      outfeedAlertsList = newOutfeedAlertsList
+      alertResponse(outfeed, outfeedAlertsList)
    })
 
    socket.on('disconnect', () => {

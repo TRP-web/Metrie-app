@@ -8,8 +8,17 @@ import AlertsShower from "../components/AlertsShower"
 
 const Page: React.FC = () => {
    const [alerts, setAlerts] = React.useState<IAnyAlertList>([])
-   const getNewUrgentAlert = () => {
-
+   const sendNewUrgentAlert = (text: string) => {
+      const date: Date = new Date()
+      const newAlert: IUrgentAlert | IUrgentAlert = {
+         text: text,
+         id: crypto.randomUUID(),
+         type: IAlertTypeOptions.urgent,
+         date: date,
+         checked: false,
+         shown: false
+      }
+      primeSocket.emit("alert", newAlert)
    }
 
    React.useEffect(() => {
@@ -39,7 +48,7 @@ const Page: React.FC = () => {
             <h1 className="text-center text-2xl">
                Outfeed Alerts
             </h1>
-            <AlertsShower alerts={alerts} socket={outfeedSocket} setAlerts={setAlerts} />
+            <AlertsShower alerts={alerts} socket={outfeedSocket} />
             <AlertsSender
                socket={primeSocket}
                title={<h1 className="text-center text-xl">An alert to <strong> The Prime line</strong></h1>}
@@ -48,16 +57,7 @@ const Page: React.FC = () => {
             <button
                className="uppercase p-4 bg-red-500 text-white font-bold"
                onClick={() => {
-                  const date: Date = new Date()
-                  const newAlert: IUrgentAlert | IUrgentAlert = {
-                     text: "Outfeed line is down!!!",
-                     id: crypto.randomUUID(),
-                     type: IAlertTypeOptions.urgent,
-                     date: date,
-                     chacked: false,
-                     showed: false
-                  }
-                  primeSocket.emit("alert", newAlert)
+                  sendNewUrgentAlert("Outfeed line is down!!!")
                }}
             >Outfeed line is down</button>
          </div>

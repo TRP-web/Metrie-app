@@ -1,1 +1,4 @@
-{}
+{
+  "/prime/page": "app/prime/page.js",
+  "/outfeed/page": "app/outfeed/page.js"
+}

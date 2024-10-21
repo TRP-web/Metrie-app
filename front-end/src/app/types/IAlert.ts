@@ -1,19 +1,20 @@
 export interface IUsualAlert {
    text: string
    id: number
-   type: IAlertType
+   type: IAlertTypeOptions.keepGoing | IAlertTypeOptions.normal
    date: Date
-   chacked: boolean
+   checked: boolean
+   
 }
 
 
 export interface IUrgentAlert {
    text: string
    id: string
-   type: IAlertType
+   type: IAlertTypeOptions.urgent
    date: Date
-   chacked: boolean
-   showed?: boolean
+   checked: boolean
+   shown: boolean
 }
 
 export type IAlertType =

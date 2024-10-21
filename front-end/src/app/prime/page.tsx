@@ -54,7 +54,7 @@ const Test: React.FC = () => {
    return (
       <>
          <h1 className="text-center text-black text-xl">Prime Alerts</h1>
-         <AlertsShower alerts={alerts} socket={primeSocket} setAlerts={setAlerts}/>
+         <AlertsShower alerts={alerts} socket={primeSocket} />
          <AlertsSender
             socket={outfeedSocket}
             title={<h1 className="text-center text-xl">An alert to <strong>The Outfeed line</strong></h1>}
