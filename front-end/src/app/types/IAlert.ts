@@ -1,6 +1,6 @@
 export interface IUsualAlert {
    text: string
-   id: number
+   id: string
    type: IAlertTypeOptions.keepGoing | IAlertTypeOptions.normal
    date: Date
    checked: boolean

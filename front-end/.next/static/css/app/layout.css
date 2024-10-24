@@ -539,17 +539,14 @@ video {
 .mb-5 {
   margin-bottom: 1.25rem;
 }
+.mr-10 {
+  margin-right: 2.5rem;
+}
 .mr-2 {
   margin-right: 0.5rem;
 }
 .mr-3 {
   margin-right: 0.75rem;
-}
-.mr-5 {
-  margin-right: 1.25rem;
-}
-.mr-10 {
-  margin-right: 2.5rem;
 }
 .block {
   display: block;
@@ -566,6 +563,9 @@ video {
 .h-\[100vh\] {
   height: 100vh;
 }
+.max-h-\[628px\] {
+  max-height: 628px;
+}
 .w-12 {
   width: 3rem;
 }
@@ -575,11 +575,26 @@ video {
 .w-\[100vw\] {
   width: 100vw;
 }
+.w-\[27\%\] {
+  width: 27%;
+}
+.w-\[70\%\] {
+  width: 70%;
+}
+.w-full {
+  width: 100%;
+}
 .min-w-\[250px\] {
   min-width: 250px;
 }
+.max-w-screen-monitor2 {
+  max-width: 1600px;
+}
 .cursor-pointer {
   cursor: pointer;
+}
+.items-start {
+  align-items: flex-start;
 }
 .items-center {
   align-items: center;
@@ -589,6 +604,12 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 .rounded {
   border-radius: 0.25rem;
@@ -623,6 +644,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(255 252 0 / var(--tw-bg-opacity));
 }
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
 .p-1 {
   padding: 0.25rem;
 }
@@ -634,6 +659,10 @@ video {
 }
 .p-5 {
   padding: 1.25rem;
+}
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 .pl-1 {
   padding-left: 0.25rem;
@@ -649,17 +678,13 @@ video {
   font-size: 3rem;
   line-height: 1;
 }
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-.text-6xl {
-  font-size: 3.75rem;
-  line-height: 1;
-}
 .text-7xl {
   font-size: 4.5rem;
   line-height: 1;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 .font-bold {
   font-weight: 700;
@@ -691,6 +716,15 @@ video {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+      display: none;
+  }
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+}
 
 :root {
   --background: #ffffff;
@@ -711,4 +745,19 @@ body {
 
 input:focus {
   outline: none;
+}
+
+@media not all and (min-width: 1600px) {
+
+  .max-monitor2\:max-h-\[\] {
+    max-height: ;
+  }
+
+  .max-monitor2\:max-h-\[400px\] {
+    max-height: 400px;
+  }
+
+  .max-monitor2\:max-h-\[420px\] {
+    max-height: 420px;
+  }
 }

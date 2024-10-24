@@ -11,15 +11,28 @@ const AlertsSender: React.FC<IAlertsSenderProps> = ({ socket, title }) => {
    const [alertType, setAlertType] = React.useState<IAlertType>(IAlertTypeOptions.normal)
    const sendHandler = () => {
       const date: Date = new Date()
-      const newAlert: IUrgentAlert | IUsualAlert = {
-         text: custumMassage,
-         id: crypto.randomUUID(),
-         type: alertType,
-         date: date,
-         chacked: false,
-         showed: false
+      let newAlert: IUrgentAlert | IUsualAlert
+      if (alertType === IAlertTypeOptions.urgent) {
+         newAlert = {
+            text: custumMassage,
+            id: crypto.randomUUID(),
+            type: alertType,
+            date: date,
+            checked: false,
+            shown: false
+         }
+      } else {
+         newAlert = {
+            text: custumMassage,
+            id: crypto.randomUUID(),
+            type: alertType,
+            date: date,
+            checked: false,
+         }
       }
       socket.emit("alert", newAlert)
+
+
    }
 
 

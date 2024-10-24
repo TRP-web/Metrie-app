@@ -1,4 +1,5 @@
 {
-  "/prime/page": "app/prime/page.js",
-  "/outfeed/page": "app/outfeed/page.js"
+  "/page": "app/page.js",
+  "/outfeed/page": "app/outfeed/page.js",
+  "/prime/page": "app/prime/page.js"
 }

@@ -8,6 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        phone1: "321px",
+        phone2: "480px",
+        tablet: "768px",
+        notebook: "1024px",
+        monitor1: "1280px",
+        monitor2: "1600px",
+        monitor3: "1920px"
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
