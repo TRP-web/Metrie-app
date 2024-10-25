@@ -5,22 +5,12 @@ import SocketStatus from "../components/SocketStatus/SocketStatus"
 import AlertsSender from "../components/AlertsSender"
 import { IAlertTypeOptions, IAnyAlertList, IUrgentAlert } from "../types/IAlert"
 import AlertsShower from "../components/AlertsShower/AlertsShower"
+import AlertPreset from "../components/AlertPreset/AlertPreset"
 
 const Page: React.FC = () => {
    const [alerts, setAlerts] = React.useState<IAnyAlertList>([])
    const [otherAlerts, setOtherAlerts] = React.useState<IAnyAlertList>([])
-   const sendNewUrgentAlert = (text: string) => {
-      const date: Date = new Date()
-      const newAlert: IUrgentAlert | IUrgentAlert = {
-         text: text,
-         id: crypto.randomUUID(),
-         type: IAlertTypeOptions.urgent,
-         date: date,
-         checked: false,
-         shown: false
-      }
-      primeSocket.emit("alert", newAlert)
-   }
+
 
    React.useEffect(() => {
       primeSocket.connect()
@@ -64,13 +54,18 @@ const Page: React.FC = () => {
                socket={primeSocket}
                title={<h1 className="text-center text-xl">An alert to <strong> The Prime line</strong></h1>}
             />
-            <h1 className="text-xl">Alert Presets</h1>
-            <button
-               className="uppercase p-4 bg-red-500 text-white font-bold"
-               onClick={() => {
-                  sendNewUrgentAlert("Outfeed line is down!!!")
-               }}
-            >Outfeed line is down</button>
+            <h1 className="text-xl text-center">Alert Presets</h1>
+            <div className="flex pl-2">
+               <AlertPreset socket={primeSocket}>
+                  Outfeed line Down!!!
+               </AlertPreset>
+               <AlertPreset socket={primeSocket}>
+                  Fouldown: Paint Splash!!!
+               </AlertPreset>
+               <AlertPreset socket={primeSocket}>
+                  Fouldown: Paint missing!!!
+               </AlertPreset>
+            </div>
          </div>
          <SocketStatus soket={outfeedSocket} />
       </>

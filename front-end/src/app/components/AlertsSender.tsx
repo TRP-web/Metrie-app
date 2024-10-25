@@ -41,52 +41,55 @@ const AlertsSender: React.FC<IAlertsSenderProps> = ({ socket, title }) => {
       <>
          <div className="mb-5">
             {title}
-            <div className="block ">
-               <label htmlFor="" className="mb-1 block" onClick={() => setAlertType(IAlertTypeOptions.urgent)}>
+            <div className="flex items-center">
+               <div className="flex w-[70%] p-2">
                   <input
-                     type="radio"
-                     name="alert-type"
-                     className="p-1"
-                     checked={alertType === IAlertTypeOptions.urgent ? true : false}
-                     readOnly
+                     type="text"
+                     className="border-purplecus  flex-grow border-2 rounded-[3px] mr-2 text-purplecus min-w-[250px] pl-2 h-[61px] text-xl"
+                     value={custumMassage}
+                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        setCustumMassage(e.target.value)
+                     }}
                   />
-                  Urgent
-               </label>
-               <label htmlFor="" className="mb-1 block" onClick={() => setAlertType(IAlertTypeOptions.normal)}>
-                  <input
-                     type="radio"
-                     name="alert-type"
-                     className="p-1"
-                     checked={alertType === IAlertTypeOptions.normal ? true : false}
-                     readOnly
-                  />
-                  Normal
-               </label>
-               <label htmlFor="" className="block" onClick={() => setAlertType(IAlertTypeOptions.keepGoing)}>
-                  <input
-                     type="radio"
-                     name="alert-type"
-                     className="p-1"
-                     checked={alertType === IAlertTypeOptions.keepGoing ? true : false}
-                     readOnly
-                  />
-                  Keep going
-               </label>
+                  <button
+                     className="bg-yellowcus text-2xl font-bold w-[150px] p-2 rounded text-white"
+                     onClick={sendHandler}
+                  >Send</button>
+               </div>
+               <div className="flex flex-grow">
+                  <label htmlFor="" className="mb-1 block mr-3 cursor-pointer text-xl" onClick={() => setAlertType(IAlertTypeOptions.urgent)}>
+                     <input
+                        type="radio"
+                        name="alert-type"
+                        className="mr-1 h-4 w-4 cursor-pointer"
+                        checked={alertType === IAlertTypeOptions.urgent ? true : false}
+                        readOnly
+                     />
+                     Urgent
+                  </label>
+                  <label htmlFor="" className="mb-1 block mr-3 cursor-pointer text-xl" onClick={() => setAlertType(IAlertTypeOptions.normal)}>
+                     <input
+                        type="radio"
+                        name="alert-type"
+                        className="mr-1 h-4 w-4 cursor-pointer"
+                        checked={alertType === IAlertTypeOptions.normal ? true : false}
+                        readOnly
+                     />
+                     Normal
+                  </label>
+                  <label htmlFor="" className="block cursor-pointer text-xl" onClick={() => setAlertType(IAlertTypeOptions.keepGoing)}>
+                     <input
+                        type="radio"
+                        name="alert-type"
+                        className="mr-1 h-4 w-4 cursor-pointer"
+                        checked={alertType === IAlertTypeOptions.keepGoing ? true : false}
+                        readOnly
+                     />
+                     Keep going
+                  </label>
+               </div>
             </div>
-            <div className="flex p-4">
-               <input
-                  type="text"
-                  className="border-purplecus border-2 mr-2 text-purplecus min-w-[250px] pl-1"
-                  value={custumMassage}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                     setCustumMassage(e.target.value)
-                  }}
-               />
-               <button
-                  className="bg-yellowcus p-2 rounded text-white"
-                  onClick={sendHandler}
-               >Send</button>
-            </div>
+
          </div>
       </>
    )

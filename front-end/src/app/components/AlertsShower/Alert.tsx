@@ -25,7 +25,7 @@ const Alert: React.FC<IAlertProps> = ({ alert, socket }) => {
    const getTimePassed = (datePosted: Date) => {
       const dateNow: number = new Date().getTime()
       const timePassed = dateNow - new Date(datePosted).getTime()
-      return `${Math.round(timePassed / 1000 / 60)} min ago`
+      return `${Math.round(timePassed / 1000 / 60)} m ago`
    }
    React.useEffect(() => {
       setAlertTimePassed(getTimePassed(alert.date))
@@ -45,12 +45,12 @@ const Alert: React.FC<IAlertProps> = ({ alert, socket }) => {
    return (
       <>
          {
-            <div className={`p-5 text-5xl mb-2 text-white flex justify-between ${getStyleByType(alert.type)}`}>
+            <div className={`text-5xl mb-2 text-white flex justify-between ${getStyleByType(alert.type)} h-[125px] px-2 items-center border-[6px] border-orange-500`}>
                <span>
                   {alert.text}
                </span>
                <div className="flex items-center">
-                  <span className="mr-3">
+                  <span className="mr-3 text-3xl font-bold">
                      {
                         alertTimePassed
                      }
