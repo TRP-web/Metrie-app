@@ -39,7 +39,7 @@ const AlertsSender: React.FC<IAlertsSenderProps> = ({ socket, title }) => {
 
    return (
       <>
-         <div className="mb-5">
+         <div className="mb-1">
             {title}
             <div className="flex items-center">
                <div className="flex w-[70%] p-2">
