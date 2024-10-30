@@ -1,7 +1,8 @@
 import { IAlertType, IAlertTypeOptions, IUrgentAlert, IUsualAlert } from "@/app/types/IAlert"
+import Image from "next/image"
 import React from "react"
 import { Socket } from "socket.io-client"
-
+import Cancel from "@/app/images/cancel-icon-white.png"
 interface IAlertProps {
    alert: IUrgentAlert | IUsualAlert
    socket: Socket
@@ -55,12 +56,23 @@ const Alert: React.FC<IAlertProps> = ({ alert, socket }) => {
                         alertTimePassed
                      }
                   </span>
+
                   <div
-                     className="w-8 h-8 bg-white cursor-pointer"
+                     className="w-8 h-8 cursor-pointer"
                      onClick={() => {
                         socket.emit("removeAlert", alert)
                      }}
-                  ></div>
+                  >
+                     <Image
+                        src={Cancel.src}
+                        alt="censel icon"
+                        sizes="100vw"
+                        width={0}
+                        height={0}
+                        priority
+                        className="w-full h-full cursor-pointer"
+                     />
+                  </div>
                </div>
             </div>
          }

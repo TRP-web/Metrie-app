@@ -5,6 +5,7 @@ import SocketStatus from "../components/SocketStatus/SocketStatus";
 import AlertsSender from "../components/AlertsSender";
 import { IAlertType, IAlertTypeOptions, IAnyAlertList } from "../types/IAlert";
 import AlertsShower from "../components/AlertsShower/AlertsShower";
+import AlertPreset from "../components/AlertPreset/AlertPreset";
 
 const Test: React.FC = () => {
 
@@ -54,6 +55,12 @@ const Test: React.FC = () => {
             title={<h1 className="text-center text-xl">An alert to <strong>The Outfeed line</strong></h1>}
          />
          <SocketStatus soket={primeSocket} />
+         <div className="flex pl-2 items-start">
+            <AlertPreset socket={outfeedSocket}>
+               Fouldown boards are coming
+            </AlertPreset>
+
+         </div>
       </>
    )
 }

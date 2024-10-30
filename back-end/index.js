@@ -8,30 +8,29 @@ const io = require('socket.io')(server, {
       origin: 'http://localhost:3000',
    }
 });
-const tt = [{
-   text: "test urgent alert",
-   id: 1,
-   type: "urgent",
-   date: new Date(),
-   chacked: false,
-   shown: false
-},
-{
-   text: "test normal alert",
-   id: 2,
-   type: "normal",
-   date: new Date(),
-   chacked: false,
-   shown: false
-},
-{
-   text: "test keep-going alert",
-   id: 3,
-   type: "keep-going",
-   date: new Date(),
-   chacked: false,
-   shown: false
-}
+const tt = [
+   //{
+   //    text: "test urgent alert",
+   //    id: 1,
+   //    type: "urgent",
+   //    date: new Date(),
+   //    chacked: false,
+   //    shown: false
+   // },
+   {
+      text: "test normal alert",
+      id: 2,
+      type: "normal",
+      date: new Date(),
+      chacked: false,
+   },
+   {
+      text: "test keep-going alert",
+      id: 3,
+      type: "keep-going",
+      date: new Date(),
+      chacked: false,
+   }
 
 ]
 

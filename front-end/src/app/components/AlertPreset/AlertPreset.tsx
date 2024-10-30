@@ -22,22 +22,25 @@ const AlertPreset: React.FC<IAlertPresetProps> = ({ socket, children }) => {
    }
    return (
       <div
-         className="bg-red-500 flex flex-col items-center mr-2 cursor-pointer max-w-[250px] w-full"
+         className="flex flex-col items-center mr-2 cursor-pointer max-w-[250px] w-full rounded-md overflow-hidden"
          onClick={() => {
             sendNewUrgentAlert(children)
          }}
       >
-         <div className="max-w-[250px]">
+         <div className="max-w-[250px] max-h-[250px]">
             <Image
                src={fishEyes.src}
                alt="fish eyes"
-               layout="responsive"
-               width={100}
-               height={100}
+               sizes="100vw"
+               // Make the image display full width
+               width={0}
+               height={0}
+               priority
+               className="w-full h-full"
             />
          </div>
          <button
-            className="uppercase py-3 bg-red-500 text-white font-bold"
+            className="uppercase py-3 bg-red-500 text-white font-bold w-full leading-none"
 
          >{children}</button>
       </div>

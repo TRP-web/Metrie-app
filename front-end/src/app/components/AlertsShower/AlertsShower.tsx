@@ -1,8 +1,9 @@
 import React from "react"
-import { IAlertType, IAlertTypeOptions, IAnyAlertList, IUrgentAlert, IUsualAlert } from "../../types/IAlert"
+import { IAlertTypeOptions, IAnyAlertList, IUrgentAlert, IUsualAlert } from "../../types/IAlert"
 import { Socket } from "socket.io-client"
 import Alert from "./Alert"
-
+import Image from "next/image"
+import Cancel from "@/app/images/cancel-icon-white.png"
 interface IAlertsShowerProps {
    alerts: IAnyAlertList
    otherAlerts: IAnyAlertList
@@ -13,6 +14,15 @@ interface IAlertsShowerProps {
 const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlerts }) => {
 
    const [uncheckedUrgentAlerts, setUncheckedUrgentAlerts] = React.useState<IUrgentAlert[]>([])
+
+   const [blink, setBlink] = React.useState<boolean>(false)
+
+   const closeAlert = () => {
+      const id = uncheckedUrgentAlerts[0].id
+      const shownAlert = uncheckedUrgentAlerts[0]
+      shownAlert.shown = true
+      socket.emit("updateAlert", id, shownAlert)
+   }
 
    React.useEffect(() => {
       let newUrgentArray: IUrgentAlert[] = []
@@ -27,31 +37,78 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
       setUncheckedUrgentAlerts(newUrgentArray)
    }, [alerts])
 
+   React.useEffect(() => {
+      const interval = setInterval(() => {
+         if (uncheckedUrgentAlerts.length > 0) {
+            setBlink(blink => !blink)
+         }
+      }, 350);
+      return () => clearInterval(interval)
+   }, [uncheckedUrgentAlerts])
 
-
-
+   const getUrgentAlertStatus = (otherAlert: IUsualAlert | IUrgentAlert): React.ReactNode | null => {
+      if (otherAlert.type === IAlertTypeOptions.urgent) {
+         if (otherAlert.shown) {
+            return (
+               <span className="text-green-600 font-bold">
+                  checked
+               </span>
+            )
+         } else return <span className="text-red-600 font-bold">unchecked</span>
+      } else return null
+   }
    return (
       <>
          {
             uncheckedUrgentAlerts.length > 0
                ?
-               <div className="bg-red-600 left-0 top-0 absolute w-[100vw] h-[100vh] text-white text-7xl font-bold flex justify-center items-center">
-                  <div
-                     className="w-12 h-12 bg-white cursor-pointer mr-10"
-                     onClick={() => {
-                        const id = uncheckedUrgentAlerts[0].id
-                        const shownAlert = uncheckedUrgentAlerts[0]
-                        shownAlert.shown = true
+               <>
 
-                        socket.emit("updateAlert", id, shownAlert)
-                     }}
-                  ></div>
-                  <span>
-                     {
-                        uncheckedUrgentAlerts[0].text
-                     }
-                  </span>
-               </div>
+                  <div className="bg-red-600 left-0 top-0 absolute w-[100%] h-[100vh] text-white text-8xl font-bold">
+                     <div className="relative flex justify-center items-center h-full">
+                        <div
+                           className="max-w-[50px] max-h-[50px] absolute right-2 top-2"
+                           onClick={closeAlert}
+                        >
+                           <Image
+                              src={Cancel.src}
+                              alt="cancel"
+                              sizes="100vw"
+                              width={0}
+                              height={0}
+                              priority
+                              className="w-full h-full cursor-pointer"
+
+                           />
+                        </div>
+                        {
+                           blink ?
+                              <span className="text-[300px] font-bold absolute left-6">
+                                 !
+                              </span>
+                              : null
+                        }
+
+                        <div className="max-w-[70%] text-center">
+                           <span>
+                              {
+                                 uncheckedUrgentAlerts[0].text
+                              }
+                           </span>
+
+
+                        </div>
+                        {
+                           blink ?
+                              <span className="text-[300px] font-bold absolute right-6">
+                                 !
+                              </span>
+                              : null
+                        }
+                     </div>
+                  </div>
+               </>
+
                :
                null
          }
@@ -74,9 +131,14 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
                {
                   otherAlerts.map((otherAlert, index) => {
                      return (
-                        <div className="w-full bg-gray-400 p-2 mb-1" key={index}>
+                        <div className="bg-gray-400 p-2 mb-1 flex justify-between" key={index}>
+                           <span>
+                              {
+                                 otherAlert.text
+                              }
+                           </span>
                            {
-                              otherAlert.text
+                              getUrgentAlertStatus(otherAlert)
                            }
                         </div>
                      )
