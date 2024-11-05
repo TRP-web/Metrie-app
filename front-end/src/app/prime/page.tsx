@@ -3,7 +3,7 @@ import React from "react";
 import { outfeedSocket, primeSocket } from "../../socket"
 import SocketStatus from "../components/SocketStatus/SocketStatus";
 import AlertsSender from "../components/AlertsSender";
-import { IAlertType, IAlertTypeOptions, IAnyAlertList } from "../types/IAlert";
+import { IAnyAlertList } from "../types/IAlert";
 import AlertsShower from "../components/AlertsShower/AlertsShower";
 import AlertPreset from "../components/AlertPreset/AlertPreset";
 
@@ -13,8 +13,6 @@ const Test: React.FC = () => {
    const [otherAlerts, setOtherAlerts] = React.useState<IAnyAlertList>([])
 
    React.useEffect(() => {
-      const ttt = process.env.customKey
-      console.log(process.env.customKey)
       // no-op if the socket is already connected
       primeSocket.connect()
       outfeedSocket.connect()
