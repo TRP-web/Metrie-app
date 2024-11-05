@@ -1,0 +1,11 @@
+FROM node:20-alpine AS base
+
+WORKDIR /app/front-end
+
+COPY package.json package-lock.json /app/front-end/
+
+RUN npm i
+
+COPY . .
+
+COPY next.config.mjs ./next.config.mjs

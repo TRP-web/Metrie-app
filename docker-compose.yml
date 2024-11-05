@@ -1,12 +1,28 @@
-version: '2'
+version: '3.8'
 
 services:
+  #build---
   front-end:
-    build: front-end/
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile.prod
     ports:
       - 3000:3000
     command: npm start
+  # dev ----
+  # front-end:
+  # container_name: metrie-front-end
+  # build:
+  #   context: ./front-end
+  #   dockerfile: Dockerfile.dev
+  # ports:
+  # - "3000:3000"
+  # environment:
+  #   - BACKEND_URL=http://backend:8000
+  #
+
   back-end:
+    container_name: metrie-back-end
     build: back-end/
     # volumes: # - D:\web\full-stack\chat-plombier\back-end:/app/back-end
     ports:
