@@ -1,3 +1,4 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
    webpackDevMiddleware: config => {
@@ -6,6 +7,10 @@ const nextConfig = {
          aggregateTimeout: 300,
       }
       return config
+   },
+   env: {
+      appStatus: 'prod',
+      backEndUrl: "https://103-98-215-99.cloud-xip.com/back-end"
    },
 };
 

@@ -13,6 +13,8 @@ const Test: React.FC = () => {
    const [otherAlerts, setOtherAlerts] = React.useState<IAnyAlertList>([])
 
    React.useEffect(() => {
+      const ttt = process.env.customKey
+      console.log(process.env.customKey)
       // no-op if the socket is already connected
       primeSocket.connect()
       outfeedSocket.connect()
