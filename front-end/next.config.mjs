@@ -9,7 +9,7 @@ const nextConfig = {
    //    return config
    // },
    env: {
-      appStatus: 'dev',
+      appStatus: 'prod',
       backEndUrl: "https://103-98-215-99.cloud-xip.com"
    },
 };

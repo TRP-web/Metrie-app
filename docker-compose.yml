@@ -2,30 +2,30 @@ version: '3.8'
 
 services:
   # build---
-  # front-end:
-  #   container_name: metrie-front-end
-  #   build:
-  #     context: ./front-end
-  #     dockerfile: Dockerfile.prod
-  #   ports:
-  #     - 3000:3000
-  #   command: npm start
-  # dev ----
   front-end:
-    environment:
-      - WATCHPACK_POLLING=true
     container_name: metrie-front-end
     build:
       context: ./front-end
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ./front-end:/app/front-end
-      - /app/front-end/node_modules
-      - /app/front-end/.next
-
+      dockerfile: Dockerfile.prod
     ports:
-      - "3000:3000"
-    command: npm run dev
+      - 3000:3000
+    command: npm start
+  # dev ----
+  # front-end:
+  #   environment:
+  #     - WATCHPACK_POLLING=true
+  #   container_name: metrie-front-end
+  #   build:
+  #     context: ./front-end
+  #     dockerfile: Dockerfile.dev
+  #   volumes:
+  #     - ./front-end:/app/front-end
+  #     - /app/front-end/node_modules
+  #     - /app/front-end/.next
+
+  #   ports:
+  #     - "3000:3000"
+  #   command: npm run dev
 
   back-end:
     container_name: metrie-back-end
