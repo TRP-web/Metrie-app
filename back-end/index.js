@@ -79,7 +79,7 @@ prime.on('connection', (socket) => {
    })
 
    socket.on('disconnect', () => {
-      console.log(`user ${socket.id} disc`);
+      // console.log(`user ${socket.id} disc`);
       socket.disconnect()
       prime.emit("status-change", getSocketsAmount())
    })
@@ -109,13 +109,13 @@ outfeed.on("connection", (socket) => {
             return updatedAlert
          } else return alert
       })
-      console.log(newOutfeedAlertsList)
+      // console.log(newOutfeedAlertsList)
       outfeedAlertsList = newOutfeedAlertsList
       alertResponse(outfeed, outfeedAlertsList)
    })
 
    socket.on('disconnect', () => {
-      console.log(`user ${socket.id} disc`);
+      // console.log(`user ${socket.id} disc`);
       socket.disconnect()
       outfeed.emit("status-change", getSocketsAmount())
    })

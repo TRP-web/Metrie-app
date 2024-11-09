@@ -113,8 +113,8 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
                null
          }
 
-         <div className="flex items-start justify-around ">
-            <div className="w-[70%] max-h-[628px] overflow-y-scroll no-scrollbar max-monitor2:max-h-[400px]">
+         <div className="flex items-start justify-around phone1:flex-col tablet:flex-row">
+            <div className="w-[70%] phone1:w-full  tablet:w-[60%] max-h-[628px] overflow-y-scroll no-scrollbar max-monitor2:max-h-[400px]">
                {
                   alerts.map((alert, index) => {
                      return (
@@ -127,12 +127,12 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
                   })
                }
             </div>
-            <div className="w-[27%] max-h-[628px] overflow-y-scroll no-scrollbar max-monitor2:max-h-[400px]">
+            <div className="w-[27%] tablet:w-[37%] max-h-[628px] overflow-y-scroll no-scrollbar max-monitor2:max-h-[400px] phone1:w-full">
                {
                   otherAlerts.map((otherAlert, index) => {
                      return (
-                        <div className="bg-gray-400 p-2 mb-1 flex justify-between" key={index}>
-                           <span>
+                        <div className="bg-gray-400 p-2 mb-1 flex justify-between w-full" key={index}>
+                           <span className="w-full">
                               {
                                  otherAlert.text
                               }

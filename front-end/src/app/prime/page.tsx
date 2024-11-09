@@ -46,6 +46,8 @@ const Test: React.FC = () => {
       }
    }, []);
 
+
+
    return (
       <>
          <h1 className="text-center text-black text-xl">Prime Alerts</h1>
@@ -55,7 +57,7 @@ const Test: React.FC = () => {
             title={<h1 className="text-center text-xl">An alert to <strong>The Outfeed line</strong></h1>}
          />
          <SocketStatus soket={primeSocket} />
-         <div className="flex pl-2 items-start">
+         <div className="flex pl-2 overflow-x-scroll no-scrollbar">
             <AlertPreset socket={outfeedSocket}>
                Fouldown boards are coming
             </AlertPreset>

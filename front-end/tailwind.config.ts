@@ -17,6 +17,7 @@ const config: Config = {
         monitor2: "1600px",
         monitor3: "1920px"
       },
+      
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

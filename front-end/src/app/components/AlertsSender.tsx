@@ -41,8 +41,8 @@ const AlertsSender: React.FC<IAlertsSenderProps> = ({ socket, title }) => {
       <>
          <div className="mb-1">
             {title}
-            <div className="flex items-center">
-               <div className="flex w-[70%] p-2">
+            <div className="flex items-center phone1:flex-col phone1:items-start monitor1:flex-row monitor1:items-center">
+               <div className="flex phone1:w-full monitor1:w-[70%] p-2">
                   <input
                      type="text"
                      className="border-purplecus  flex-grow border-2 rounded-[3px] mr-2 text-purplecus min-w-[250px] pl-2 h-[61px] text-xl"

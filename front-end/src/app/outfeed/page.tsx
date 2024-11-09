@@ -55,7 +55,7 @@ const Page: React.FC = () => {
                title={<h1 className="text-center text-xl">An alert to <strong> The Prime line</strong></h1>}
             />
             <h1 className="text-xl text-center">Alert Presets</h1>
-            <div className="flex pl-2">
+            <div className="flex pl-2 overflow-x-scroll no-scrollbar">
                <AlertPreset socket={primeSocket}>
                   Outfeed line Down!!!
                </AlertPreset>
@@ -63,7 +63,7 @@ const Page: React.FC = () => {
                   Fouldown: Paint Splash!!!
                </AlertPreset>
                <AlertPreset socket={primeSocket}>
-                  Fouldown: Paint missing!!!
+                  Fouldown: Paint missing
                </AlertPreset>
             </div>
          </div>
