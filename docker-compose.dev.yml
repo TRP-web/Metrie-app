@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  front-end:
+    environment:
+      - WATCHPACK_POLLING=true
+    container_name: metrie-front-end
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./front-end:/app/front-end
+      - /app/front-end/node_modules
+      - /app/front-end/.next
+
+    ports:
+      - "3000:3000"
+    command: npm run dev
+
+  back-end:
+    container_name: metrie-back-end
+    build: back-end/
+    # volumes: # - D:\web\full-stack\chat-plombier\back-end:/app/back-end
+    ports:
+      - 3001:3001
+    command: node index.js

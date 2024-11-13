@@ -90,6 +90,25 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
                         }
 
                         <div className="max-w-[70%] text-center">
+
+                           {
+                              uncheckedUrgentAlerts[0].src ?
+                                 <div className="group max-w-[250px] w-full h-full max-h-[250px] overflow-hidden m-auto">
+                                    <Image
+                                       src={uncheckedUrgentAlerts[0].src}
+                                       alt="fish eyes"
+                                       sizes="100vw"
+                                       // Make the image display full width
+                                       width={0}
+                                       height={0}
+                                       priority
+                                       className="w-full h-full"
+                                    />
+                                 </div>
+                                 : null
+                           }
+
+
                            <span>
                               {
                                  uncheckedUrgentAlerts[0].text
@@ -114,8 +133,8 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
          }
 
          <div className="flex items-start justify-around phone1:flex-col tablet:flex-row">
-            <div className="w-[70%] phone1:w-full  tablet:w-[60%] max-h-[628px] overflow-y-scroll no-scrollbar max-monitor2:max-h-[400px]">
-               {
+            <div className="w-[70%] phone1:w-full  tablet:w-[60%] notebook:w-[75%] h-[628px] overflow-y-scroll no-scrollbar max-monitor2:h-[400px]">
+               { //when no alerts
                   alerts.map((alert, index) => {
                      return (
                         <Alert
@@ -127,8 +146,8 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
                   })
                }
             </div>
-            <div className="w-[27%] tablet:w-[37%] max-h-[628px] overflow-y-scroll no-scrollbar max-monitor2:max-h-[400px] phone1:w-full">
-               {
+            <div className="w-[27%] tablet:w-[37%] notebook:w-[24%] max-h-[628px] overflow-y-scroll no-scrollbar max-monitor2:max-h-[400px] phone1:w-full">
+               { //when no alerts
                   otherAlerts.map((otherAlert, index) => {
                      return (
                         <div className="bg-gray-400 p-2 mb-1 flex justify-between w-full" key={index}>

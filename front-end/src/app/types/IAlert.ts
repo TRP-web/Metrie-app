@@ -4,7 +4,7 @@ export interface IUsualAlert {
    type: IAlertTypeOptions.keepGoing | IAlertTypeOptions.normal
    date: Date
    checked: boolean
-   
+
 }
 
 
@@ -15,6 +15,7 @@ export interface IUrgentAlert {
    date: Date
    checked: boolean
    shown: boolean
+   src?: string
 }
 
 export type IAlertType =

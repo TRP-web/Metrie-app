@@ -3,14 +3,18 @@ import { outfeedSocket, primeSocket } from "@/socket"
 import React from "react"
 import SocketStatus from "../components/SocketStatus/SocketStatus"
 import AlertsSender from "../components/AlertsSender"
-import { IAlertTypeOptions, IAnyAlertList, IUrgentAlert } from "../types/IAlert"
+import { IAnyAlertList } from "../types/IAlert"
 import AlertsShower from "../components/AlertsShower/AlertsShower"
-import AlertPreset from "../components/AlertPreset/AlertPreset"
+import AlertPreset from "../components/AlertPresets/AlertPreset"
+import { useRouter } from "next/navigation"
+import Header from "../components/Header"
+import AlertPrsets from "../components/AlertPresets/AlertPresetsOutfeed"
+import AlertPresetsOutfeed from "../components/AlertPresets/AlertPresetsOutfeed"
 
 const Page: React.FC = () => {
    const [alerts, setAlerts] = React.useState<IAnyAlertList>([])
    const [otherAlerts, setOtherAlerts] = React.useState<IAnyAlertList>([])
-
+   const router = useRouter()
 
    React.useEffect(() => {
       primeSocket.connect()
@@ -46,28 +50,17 @@ const Page: React.FC = () => {
    return (
       <>
          <div className="">
-            <h1 className="text-center text-2xl">
-               Outfeed Alerts
-            </h1>
+
+            <Header>Outfeed Alerts</Header>
             <AlertsShower alerts={alerts} socket={outfeedSocket} otherAlerts={otherAlerts} />
             <AlertsSender
                socket={primeSocket}
                title={<h1 className="text-center text-xl">An alert to <strong> The Prime line</strong></h1>}
             />
             <h1 className="text-xl text-center">Alert Presets</h1>
-            <div className="flex pl-2 overflow-x-scroll no-scrollbar">
-               <AlertPreset socket={primeSocket}>
-                  Outfeed line Down!!!
-               </AlertPreset>
-               <AlertPreset socket={primeSocket}>
-                  Fouldown: Paint Splash!!!
-               </AlertPreset>
-               <AlertPreset socket={primeSocket}>
-                  Fouldown: Paint missing
-               </AlertPreset>
-            </div>
+            <AlertPresetsOutfeed />
          </div>
-         <SocketStatus soket={outfeedSocket} />
+
       </>
    )
 }

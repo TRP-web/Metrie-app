@@ -46,12 +46,12 @@ const Alert: React.FC<IAlertProps> = ({ alert, socket }) => {
    return (
       <>
          {
-            <div className={`notebook:text-5xl tablet:text-3xl mb-2 text-white flex justify-between ${getStyleByType(alert.type)} phone1:min-h-[90px] monitor1:min-h-[125px] px-2 items-center border-[6px] border-orange-500 phone1:text-2xl phone2:px-1 phone2:h-auto phone2:max-h-[125px]`}>
-               <span className="">
+            <div className={`notebook:text-5xl tablet:text-3xl mb-2 text-white flex justify-between ${getStyleByType(alert.type)} phone1:min-h-[90px] monitor1:min-h-[125px] px-2 items-center border-[6px] border-orange-500 phone1:text-2xl phone2:px-1 phone2:h-auto phone2:max-h-[125px] phone2:text-3xl hover:monitor1:min-h-[135px] group duration-200`}>
+               <span className="group-hover:notebook:text-4xl group-hover:monitor1:text-6xl  duration-200 font-bold">
                   {alert.text}
                </span>
                <div className="flex items-center">
-                  <span className="mr-3 text-3xl font-bold">
+                  <span className="mr-3 text-3xl font-bold whitespace-nowrap">
                      {
                         alertTimePassed
                      }m<span className="max-[768px]:hidden"> ago</span>
@@ -70,7 +70,7 @@ const Alert: React.FC<IAlertProps> = ({ alert, socket }) => {
                         width={0}
                         height={0}
                         priority
-                        className="w-full h-full cursor-pointer"
+                        className="w-full h-full min-w-8 min-h-8 cursor-pointer"
                      />
                   </div>
                </div>

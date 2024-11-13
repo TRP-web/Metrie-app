@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        phone1: "321px",
+        phone1: "320px",
         phone2: "480px",
         tablet: "768px",
         notebook: "1024px",
@@ -17,12 +17,14 @@ const config: Config = {
         monitor2: "1600px",
         monitor3: "1920px"
       },
-      
+
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
         yellowcus: "#FFFC00",
+        yellowdurk: "#EAE600",
         purplecus: "#6C0AAB",
+
       },
     },
   },
