@@ -1,6 +1,8 @@
 import React from "react"
 import { Socket } from "socket.io-client"
 import { IAlertType, IAlertTypeOptions, IUrgentAlert, IUsualAlert } from "../types/IAlert"
+import Image from "next/image"
+import Bell from "../images/bell.png"
 interface IAlertsSenderProps {
    socket: Socket
    title: React.ReactNode
@@ -46,9 +48,17 @@ const AlertsSender: React.FC<IAlertsSenderProps> = ({ socket, title }) => {
                      }}
                   />
                   <button
-                     className="bg-yellowcus text-2xl font-bold w-[150px] p-2 rounded text-white active:bg-yellowdurk"
+                     className="flex justify-center items-center bg-yellowcus text-2xl font-bold w-[150px] p-2 rounded text-white active:bg-yellowdurk"
                      onClick={sendHandler}
-                  >Send</button>
+                  >
+                     <span className="mr-2">Send</span>
+                     <Image
+                        src={Bell.src}
+                        width={25}
+                        height={25}
+                        alt="bell"
+
+                     /></button>
                </div>
                <div className="flex flex-grow">
                   <label htmlFor="" className="mb-1 block mr-3 cursor-pointer text-xl text-red-600 font-bold" onClick={() => setAlertType(IAlertTypeOptions.urgent)}>

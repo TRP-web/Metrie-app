@@ -12,10 +12,29 @@ const AlertPresetsOutfeed: React.FC = () => {
                Outfeed line Down!!!
             </AlertPreset>
             <AlertPreset src={fishEyes.src} socket={primeSocket}>
-               Fouldown: Paint Splash!!!
+               {/* {Fouldown:} */}
+               Paint Splash!
             </AlertPreset>
             <AlertPreset src={fishEyes.src} socket={primeSocket}>
-               Fouldown: Paint missing
+               Paint missing!
+            </AlertPreset>
+            <AlertPreset src={fishEyes.src} socket={primeSocket}>
+               Line on the side!
+            </AlertPreset>
+            <AlertPreset src={fishEyes.src} socket={primeSocket}>
+               Line on the nose!
+            </AlertPreset>
+            <AlertPreset src={fishEyes.src} socket={primeSocket}>
+               Cracking!
+            </AlertPreset>
+            <AlertPreset src={fishEyes.src} socket={primeSocket}>
+               Marks!
+            </AlertPreset>
+            <AlertPreset src={fishEyes.src} socket={primeSocket}>
+               Rough finish on the side!
+            </AlertPreset>
+            <AlertPreset src={fishEyes.src} socket={primeSocket}>
+               Damage!
             </AlertPreset>
          </div>
       </>
