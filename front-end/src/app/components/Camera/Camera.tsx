@@ -22,11 +22,18 @@ const Camera: React.FC = () => {
    }, [])
    console.log()
 
+   const getCameraWidth = (windowWidth: number): number => {
+      if (windowWidth > 699) {
+         return 640
+      } else {
+         return windowWidth - 50
+      }
+   }
    const startCamera = async () => {
       const stream = await navigator.mediaDevices.getUserMedia({
          video: {
             facingMode: "user", // Request the front camera (selfie camera)
-            width: window.innerWidth - 50,
+            width: getCameraWidth(window.innerWidth)
             // height: 480
          },
       });
