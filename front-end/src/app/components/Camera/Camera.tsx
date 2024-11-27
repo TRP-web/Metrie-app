@@ -20,13 +20,14 @@ const Camera: React.FC = () => {
       startCamera()
 
    }, [])
+   console.log()
 
    const startCamera = async () => {
       const stream = await navigator.mediaDevices.getUserMedia({
          video: {
             facingMode: "user", // Request the front camera (selfie camera)
-            width: 640,
-            height: 480
+            width: window.innerWidth - 50,
+            // height: 480
          },
       });
       if (cameraRef.current) {
