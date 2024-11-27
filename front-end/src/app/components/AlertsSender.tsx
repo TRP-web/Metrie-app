@@ -1,18 +1,20 @@
 import React from "react"
 import { Socket } from "socket.io-client"
-import { IAlertType, IAlertTypeOptions, IUrgentAlert, IUsualAlert } from "../types/IAlert"
+import { IAlertType, IAlertTypeOptions, IAnyAlert, IUrgentAlert, IUsualAlert } from "../types/IAlert"
 import Image from "next/image"
 import Bell from "../images/bell.png"
+import { HeaderContext, IHeaderContext } from "./HeaderProvider/HeaderProvider"
 interface IAlertsSenderProps {
    socket: Socket
    title: React.ReactNode
 }
 const AlertsSender: React.FC<IAlertsSenderProps> = ({ socket, title }) => {
+   const { image } = React.useContext(HeaderContext) as IHeaderContext
    const [custumMassage, setCustumMassage] = React.useState<string>("test222")
    const [alertType, setAlertType] = React.useState<IAlertType>(IAlertTypeOptions.normal)
    const sendHandler = () => {
       const date: Date = new Date()
-      let newAlert: IUrgentAlert | IUsualAlert
+      let newAlert: IAnyAlert
       if (alertType === IAlertTypeOptions.urgent) {
          newAlert = {
             text: custumMassage,
@@ -20,7 +22,8 @@ const AlertsSender: React.FC<IAlertsSenderProps> = ({ socket, title }) => {
             type: alertType,
             date: date,
             checked: false,
-            shown: false
+            shown: false,
+            src: image ? image : undefined
          }
       } else {
          newAlert = {
@@ -57,8 +60,8 @@ const AlertsSender: React.FC<IAlertsSenderProps> = ({ socket, title }) => {
                         width={25}
                         height={25}
                         alt="bell"
-
-                     /></button>
+                     />
+                  </button>
                </div>
                <div className="flex flex-grow">
                   <label htmlFor="" className="mb-1 block mr-3 cursor-pointer text-xl text-red-600 font-bold" onClick={() => setAlertType(IAlertTypeOptions.urgent)}>

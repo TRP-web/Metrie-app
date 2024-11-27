@@ -1,22 +1,22 @@
-export interface IUsualAlert {
+
+
+export interface IAlertPattern<T> {
    text: string
    id: string
-   type: IAlertTypeOptions.keepGoing | IAlertTypeOptions.normal
+   type: T
    date: Date
    checked: boolean
-
 }
 
 
-export interface IUrgentAlert {
-   text: string
-   id: string
-   type: IAlertTypeOptions.urgent
-   date: Date
-   checked: boolean
+export type IUsualAlert = IAlertPattern<IAlertTypeOptions.normal | IAlertTypeOptions.keepGoing>
+
+export interface IUrgentAlert extends IAlertPattern<IAlertTypeOptions.urgent> {
    shown: boolean
    src?: string
 }
+
+export type IAnyAlert = IUrgentAlert | IUsualAlert
 
 export type IAlertType =
    IAlertTypeOptions.keepGoing |

@@ -1,20 +1,16 @@
 "use client"
 import { outfeedSocket, primeSocket } from "@/socket"
 import React from "react"
-import SocketStatus from "../components/SocketStatus/SocketStatus"
 import AlertsSender from "../components/AlertsSender"
 import { IAnyAlertList } from "../types/IAlert"
 import AlertsShower from "../components/AlertsShower/AlertsShower"
-import AlertPreset from "../components/AlertPresets/AlertPreset"
 import { useRouter } from "next/navigation"
-import Header from "../components/Header"
-import AlertPrsets from "../components/AlertPresets/AlertPresetsOutfeed"
 import AlertPresetsOutfeed from "../components/AlertPresets/AlertPresetsOutfeed"
+import CreatedImage from "../components/CreatedImage/CreatedImage"
 
 const Page: React.FC = () => {
    const [alerts, setAlerts] = React.useState<IAnyAlertList>([])
    const [otherAlerts, setOtherAlerts] = React.useState<IAnyAlertList>([])
-   const router = useRouter()
 
    React.useEffect(() => {
       primeSocket.connect()
@@ -50,8 +46,6 @@ const Page: React.FC = () => {
    return (
       <>
          <div className="">
-
-            <Header>Outfeed Alerts</Header>
             <AlertsShower alerts={alerts} socket={outfeedSocket} otherAlerts={otherAlerts} />
             <AlertsSender
                socket={primeSocket}
@@ -59,6 +53,7 @@ const Page: React.FC = () => {
             />
             <h1 className="text-xl text-center">Alert Presets</h1>
             <AlertPresetsOutfeed />
+            <CreatedImage />
          </div>
 
       </>

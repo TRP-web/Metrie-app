@@ -6,7 +6,7 @@ import AlertsSender from "../components/AlertsSender";
 import { IAnyAlertList } from "../types/IAlert";
 import AlertsShower from "../components/AlertsShower/AlertsShower";
 import AlertPreset from "../components/AlertPresets/AlertPreset";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import AlertPresetsPrime from "../components/AlertPresets/AlertPresetsPrime";
 
 const Test: React.FC = () => {
@@ -52,7 +52,6 @@ const Test: React.FC = () => {
 
    return (
       <>
-         <Header>Prime Alerts</Header>
          <AlertsShower otherAlerts={otherAlerts} alerts={alerts} socket={primeSocket} />
          <AlertsSender
             socket={outfeedSocket}
