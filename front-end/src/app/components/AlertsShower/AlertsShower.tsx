@@ -64,7 +64,7 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
                ?
                <>
 
-                  <div className="bg-red-600 left-0 top-0 absolute w-[100%] h-[100vh] text-white text-8xl font-bold">
+                  <div className="bg-red-600 left-0 top-0 absolute w-[100%] h-[100vh] text-white phone1:text-6xl notebook:text-8xl font-bold">
                      <div className="relative flex justify-center items-center h-full">
                         <div
                            className="max-w-[50px] max-h-[50px] absolute right-2 top-2"
@@ -83,17 +83,17 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
                         </div>
                         {
                            blink ?
-                              <span className="text-[300px] font-bold absolute left-6">
+                              <span className="phone1:hidden notebook:inline-block text-[300px] font-bold absolute left-6">
                                  !
                               </span>
                               : null
                         }
 
-                        <div className="max-w-[70%] text-center">
+                        <div className="notebook:max-w-[70%] text-center">
 
                            {
                               uncheckedUrgentAlerts[0].src ?
-                                 <div className="group max-w-[250px] w-full h-full max-h-[250px] overflow-hidden m-auto">
+                                 <div className="group tablet:max-w-[90%] notebook:max-w-[550px] w-full h-full max-h-[75vh] m-auto px-1">
                                     <Image
                                        src={uncheckedUrgentAlerts[0].src}
                                        alt="fish eyes"
@@ -102,7 +102,7 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
                                        width={0}
                                        height={0}
                                        priority
-                                       className="w-full h-full"
+                                       className="w-full max-h-[75vh] h-full"
                                     />
                                  </div>
                                  : null
@@ -119,7 +119,7 @@ const AlertsShower: React.FC<IAlertsShowerProps> = ({ alerts, socket, otherAlert
                         </div>
                         {
                            blink ?
-                              <span className="text-[300px] font-bold absolute right-6">
+                              <span className="phone1:hidden notebook:inline-block text-[300px] font-bold absolute right-6">
                                  !
                               </span>
                               : null
